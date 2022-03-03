@@ -4,4 +4,4 @@
 
 - Lecture et écriture en BDD 
 - Flask
-- HTML
+- HTML / CSS
