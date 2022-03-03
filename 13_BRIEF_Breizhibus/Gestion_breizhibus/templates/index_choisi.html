@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Acceuil{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_tb.css') }}">
+{% endblock %}
+
+{% block connexion %}
+  <div id="connexion_button">
+    <a href="{{ url_for('connexion')}}" id="a_connexion"> Connexion </a>
+  </div>
+{% endblock %}
+
+{% block content %}             
+    <div id="reseau">
+        
+    </div>
+
+    <div id="info">
+      <form method="post" action="{{ url_for('rouge')}}">
+      <fieldset>
+        <label for="lign">Choix de la ligne :</label>
+        <select name="Ligne">
+          <option value="Rouge" >Ligne Rouge</option>
+          <option value="Vert">Ligne Verte</option>
+          <option value="Bleu">Ligne Bleu</option>
+        </select>
+        <br><br>
+        <button type="submit">
+          <strong>Valider</strong>
+      </button>
+      </fieldset>
+      </form>
+    </div>
+
+    <div id="affichage_info">
+        <table >
+            <tr>
+                <th>Nom de l'arrêt</th>
+                <th>Adresse</th>
+            </tr>
+            {% for arret in arr %}
+                <tr>
+                    <td class="ctr">{{ arret.nom }}</td>
+                    <td class="ctr">{{ arret.adresse }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

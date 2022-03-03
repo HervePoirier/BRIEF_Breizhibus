@@ -1,0 +1,27 @@
+=============================NOM PROCEDURE: selection_ligne==========================
+
+input: Rouge / Vert / Bleu
+
+SELECT arrets.nom, arrets.adresse
+FROM arrets 
+INNER JOIN arrets_lignes ON arrets.id_arret = arrets_lignes.id_arret
+INNER JOIN lignes ON arrets_lignes.id_ligne = lignes.id_ligne
+WHERE lignes.nom = input
+
+======================================================================================
+connexion_bdd.py: 
+
+@classmethod
+    def test_lecture(cls, couleur):
+
+        save = cls.__cursor.callproc('selection_ligne',[couleur,])
+
+        for pouet in cls.__cursor.stored_results():
+           return print(pouet.fetchall())
+
+=====================================================================================
+main.py: 
+
+variable_couleur='Rouge'
+Connexion.test_lecture(variable_couleur)
+

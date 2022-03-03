@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block connexion %}
+  <div id="connexion_button">
+    <a href="{{ url_for('connexion')}}" id="a_connexion"> Connexion </a>
+  </div>
+{% endblock %}
+
+{% block content %}             
+  <div>
+    <img src="../static/reseau_bus.png" alt="" id="reseau">
+  </div>
+
+  <div id="info">
+    <form method="post" action="{{ url_for('rouge')}}">
+      <fieldset>
+        <label for="lign">Choix de la ligne :</label>
+        <select name = "Ligne">
+          {% for i in lin %}
+            <option value={{i.nom}} >Ligne {{i.nom}}</option>
+          {% endfor %}
+        </select>
+        <br><br>
+        <button type="submit">
+          <strong>Valider</strong>
+        </button>
+      </fieldset>
+    </form>
+  </div>
+
+  <div id="affichage_info">
+
+  </div>
+{% endblock %}

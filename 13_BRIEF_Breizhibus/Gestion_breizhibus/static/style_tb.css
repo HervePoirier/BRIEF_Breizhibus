@@ -1,0 +1,21 @@
+table {
+    width: 90%;
+    border-collapse: collapse;
+    margin: auto;
+    margin-bottom: 3em;
+}
+
+th {
+    background-color : lightgray;
+}
+
+td {
+    background-color:  white;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    width: 10%;
+  }
+
+.ctr {
+    text-align: center;
+}

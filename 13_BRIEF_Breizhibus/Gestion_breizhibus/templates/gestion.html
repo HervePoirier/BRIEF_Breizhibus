@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block title %}Tableau de bord{% endblock %}
+
+{% block connexion %}
+  <div id="connexion_button">
+    <a href="{{ url_for('index')}}" id="a_connexion"> Deconnexion </a>
+  </div>
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_tb.css') }}"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='pop_up.css') }}"> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+    {% if droits %}
+        <div class="contenu">
+            <table >
+                <tr>
+                    <th>Numero de bus</th>
+                    <th>Immatriculation bus</th>
+                    <th>Nombre de place</th>
+                    <th>Ligne</th>
+                    <!-- <th></th> -->
+                </tr>
+                {% for b in bus %}
+                    <tr>
+                        <td>{{ b.numero }}</td>
+                        <td class="ctr">{{ b.immatriculation }}</td>
+                        <td class="ctr">{{ b.nombre_place }}</td>
+                        {% for i in lignes %} 
+                            {% if b.id_ligne == i.id %}
+                                <td class="ctr">{{ i.nom }}</td>
+                            {% endif %}
+                        {% endfor %}
+                        <!-- <td class="ctr"><span class="material-icons">edit_note</span></td> -->
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <div class="ajout_bus">
+                <form action="{{ url_for('gestion') }}" method="post">
+                    <fieldset>
+                        <legend>Ajout de bus</legend>
+                        <label for="n_bus">Numéro de bus :</label>
+                        <input type="text" required name="n_bus">
+
+                        <label for="immat">Immatriculation :</label>
+                        <input type="text" required name="immat">
+
+                        <label for="nb_place">Nombre de place :</label>
+                        <input type="text" required name="nb_place">
+
+                        <select name="ligne" id="ligne">
+                            {% for i in lignes %} 
+                                <option value="{{ i.id }}">{{ i.nom }}</option>
+                            {% endfor %}
+                        </select>
+
+                        <button type="submit">Ajouter</button>
+
+                        <input name="droits" type="hidden" value="{{ droits }}">
+                        <input name="choix_modifs" type="hidden" value="ajout">
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="maj_bus">
+                <form action="{{ url_for('gestion') }}" method="post">
+                    <fieldset>
+                        <legend>Mise à jour des bus</legend>
+                        <label for="n_bus">Numéro de bus :</label>
+                        
+                        <select name="id_bus" id="n_bus">
+                            {% for b in bus %}
+                                <option value="{{ b.id }}">{{ b.numero }}</option>
+                            {% endfor %}
+                        </select>
+                        
+                        <select name="ligne" id="ligne">
+                            {% for i in lignes %} 
+                                <option value="{{ i.id }}">{{ i.nom }}</option>
+                            {% endfor %}
+                        </select>
+
+                        <button type="submit">Modifier</button>
+
+                        <input name="droits" type="hidden" value="{{ droits }}">
+                        <input name="choix_modifs" type="hidden" value="modif">
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="supp_bus">
+                <form action="{{ url_for('gestion') }}" method="post">
+                    <fieldset>
+                        <legend>Suppression des bus</legend>
+                        <label for="n_bus">Numéro de bus :</label>
+                        
+                        <select name="id_bus" id="n_bus">
+                            {% for b in bus %}
+                                <option value="{{ b.id }}">{{ b.numero }}</option>
+                            {% endfor %}
+                        </select>
+                        
+                        <button type="submit">Supprimer</button>
+
+                        <input name="droits" type="hidden" value="{{ droits }}">
+                        <input name="choix_modifs" type="hidden" value="supp">
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+    {% elif droits == None %}
+        <div class="contenu">
+            <p id="acces_refuse">Le nom d'utilisateur ou le mot de passe est erroné !</p>
+        </div>
+    {% else %}
+        <div class="contenu">
+            <p id="acces_refuse">Vous n'êtes pas autorisé à accéder au tableau de bord !</p>
+        </div>
+    {% endif %}
+{% endblock %}

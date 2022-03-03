@@ -1,0 +1,90 @@
+body {
+    text-align: center;
+    background: radial-gradient(circle, rgba(0,252,39,1) 0%, rgba(45,184,253,1) 97%);
+
+}
+
+header.page-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* height: 30%; */
+    min-width: 100%;
+}
+
+
+#menu_bar {
+    display: flex;
+    align-items: center;
+}
+
+#menu {
+    list-style: none;
+    padding-left: 0px;
+    margin: 0px;
+}
+
+nav {
+    background-color: black;
+    width: 100%;
+    margin: 0;
+}
+
+.menu_item {
+    margin-left: 2px;
+    float: left;
+}
+
+.bouton_menu {
+    display:block;
+    float:left;   
+    width:15em;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 15px;
+    text-align:center;
+    padding: 10px;
+}
+
+#connexion_button {
+    width: 100px;
+    height: 100%;
+    text-align: center;
+    float: right;
+    margin-left: auto;
+    margin-right: 1.5em;
+    border: solid rgb(1, 179, 1) 2px;
+    border-radius: 5px;
+    background-color: rgb(1, 179, 1);
+}
+
+#a_connexion {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+header.page-header > h1 {
+    /* text-align: center; */
+    margin: auto;
+    color: white;
+    font: italic bold 80px "Dancing Script", cursive;
+    width: 100%;
+}
+
+
+#titre{
+    text-decoration: none;
+}
+
+#titre:visited {
+    color: white;
+}
+
+#reseau {
+    width: 30%;
+    height: 30%;
+}

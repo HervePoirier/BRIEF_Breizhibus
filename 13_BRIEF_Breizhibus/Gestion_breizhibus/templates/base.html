@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock %}</title>
+        <!-- Fichier CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        {% block links %}{% endblock %}
+    </head>
+    <body>
+        <!-- Entête de la page web -->
+        <header class="page-header">
+            <nav>
+                <div id="menu_bar">
+                    <ul id="menu">
+                        <li class="menu_item"><a href="{{url_for('index')}}" class="bouton_menu">Accueil</a></li>
+                        <li class="menu_item"><a href="#reseau" class="bouton_menu">Le réseau Breizhibus</a></li>
+                    </ul>
+                    {% block connexion %}{% endblock %}
+                </div>
+            </nav>
+
+            
+            <h1><a href="{{ url_for('index') }}" id="titre">Breizhibus</a></h1>
+            <!-- Bloc de navigation -->
+
+            {% block boutondon %}{% endblock %}
+
+        </header>
+        <section >
+            {% block content %} {% endblock %}
+        </section>
+    </body>
+</html>
